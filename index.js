@@ -7,6 +7,11 @@ const app = express()
 app.use("/users", users)
 app.use("/posts", posts)
 
+app.use((req, res, next) => {
+	console.log(new Date().toUTCString())
+	next()
+})
+
 app.get("/", [
 	(req, res, next) => {
 		console.log("Middleware 1")
