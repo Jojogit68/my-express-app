@@ -1,17 +1,14 @@
 const express = require('express')
+const users = require("./routes/users/index")
+const posts = require("./routes/posts/index")
 
 const app = express()
 
+app.use("/users", users)
+app.use("/posts", posts)
+
 app.get("/", (req, res) => {
 	res.send(`<h1>Express : Bienvenue ! 👌</h1>`)
-})
-
-app.get("/users", (req, res) => {
-	res.send(`<h1>Voici la page des utilisateurs 👨‍👨‍👧‍👦</h1>`)
-})
-
-app.post("/users", (req, res) => {
-	res.send("<h1>Voici la page des utilisateurs 👨‍👨‍👧‍👦 avec la requête POST</h1>")
 })
 
 app.all("/any-route", (req, res) => {
@@ -19,7 +16,5 @@ app.all("/any-route", (req, res) => {
 		"<h1>Cette page 📄 peut être obtenue avec tous les types de requête HTTP</h1>"
 	)
 })
-
-
 
 app.listen(3000)
