@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
 })
 
 router.get("/:username", (req, res) => {
-	res.send(`<h1>Voici la page 📄 du profil de ${req.params.username} 👨‍👨‍👧‍👦</h1>`)
+	res.render("profile", { username: req.params.username })
 })
 
 module.exports = router

@@ -1,11 +1,15 @@
 const express = require("express")
 const users = require("./routes/users/index")
 const posts = require("./routes/posts/index")
+const path = require("path")
 
 const app = express()
 
 app.use("/users", users)
 app.use("/posts", posts)
+
+app.set("view engine", "pug")
+app.set("views", path.join(__dirname, "views"))
 
 app.use((req, res, next) => {
 	console.log(new Date().toUTCString())
