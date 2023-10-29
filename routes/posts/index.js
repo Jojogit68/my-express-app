@@ -7,6 +7,7 @@ router.get("/", (req, res) => {
 })
 
 router.get("/most-popular", (req, res) => {
+	console.log(req.cookies)
 	res.send("<h1>Voici la page des articles les + populaires</h1>")
 })
 

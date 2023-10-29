@@ -2,17 +2,21 @@ const express = require("express")
 const app = express()
 const path = require("path")
 const db = require("./models")
+const cookieParser = require("cookie-parser")
 
 const users = require("./routes/users")
 const posts = require("./routes/posts")
 const login = require("./routes/login")
+const logout = require("./routes/logout")
 
+app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/users", users)
 app.use("/posts", posts)
 app.use("/login", login)
+app.use("/logout", logout)
 
 app.use(express.static(path.join(__dirname, "public")))
 

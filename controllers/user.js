@@ -11,9 +11,11 @@ module.exports = {
 				username,
 				password,
 			})
+
+      res.cookie('username', username, {secure: true})
 			res.render("profile", { username })
 		} else {
-			res.send("Non ajouté à la base de données !")
+      res.send("Non ajouté à la base de données !")
 		}
 	},
 }
