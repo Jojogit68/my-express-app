@@ -12,10 +12,28 @@ module.exports = {
 				password,
 			})
 
-      res.cookie('username', username, {secure: true})
+			res.cookie("username", username, { secure: true })
 			res.render("profile", { username })
 		} else {
-      res.send("Non ajouté à la base de données !")
+			res.send("Non ajouté à la base de données !")
+		}
+	},
+
+	login: async (req, res) => {
+		if (req.body.username && req.body.password) {
+			const { username, password } = req.body
+
+			let user = await User.findOne({
+				where: { username, password },
+			})
+
+			if (user) {
+				req.session.user = user
+				req.session.authorized = true
+				res.render("profile", { username })
+			} else {
+				res.render("login")
+			}
 		}
 	},
 }

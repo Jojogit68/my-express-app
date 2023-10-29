@@ -2,15 +2,24 @@ const express = require("express")
 const app = express()
 const path = require("path")
 const db = require("./models")
-const cookieParser = require("cookie-parser")
+const session = require("express-session")
 
 const users = require("./routes/users")
 const posts = require("./routes/posts")
 const login = require("./routes/login")
 const logout = require("./routes/logout")
 
-app.use(cookieParser())
 app.use(express.json())
+app.use(
+	session({
+		secret: "ilfautledireapersonne",
+		cookie: {
+			sameSite: "strict",
+		},
+		// resave: false,
+		// saveUninitialized: false,
+	})
+)
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/users", users)
