@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const path = require("path")
+const db = require("./models")
 
 const users = require("./routes/users")
 const posts = require("./routes/posts")
@@ -17,6 +18,10 @@ app.use(express.static(path.join(__dirname, "public")))
 
 app.set("view engine", "pug")
 app.set("views", path.join(__dirname, "views"))
+
+;(async () => {
+	await db.sequelize.sync()
+})()
 
 app.use((req, res, next) => {
 	console.log(new Date().toUTCString())
