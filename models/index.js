@@ -8,6 +8,7 @@ const sequelize = new Sequelize(
 	{
 		host: dbConfig.HOST,
 		dialect: dbConfig.DIALECT,
+		// logging: (...msg) => console.log(msg),
 	}
 )
 
